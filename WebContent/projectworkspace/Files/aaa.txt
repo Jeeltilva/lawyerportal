@@ -1,0 +1,14 @@
+$sql='SELECT admin_email,admin_passsword FROM admin where admin_email='.$_POST["email"].' and admin_password="'.$_POST['password'].'";';
+$r=musqli_query($con,$sql);
+if(mysqli_num_rows($r)==0)
+{
+	echo "invalid username and password";
+	die(mysql_error());
+}
+else
+{
+	session_start();
+	$_SESSION['em']=$_POST['email'];
+	$_SESSION['ps']=$_POST['password'];
+	header("location:homepage.html");
+}
